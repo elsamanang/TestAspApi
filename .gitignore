@@ -1,0 +1,9 @@
+﻿################################################################################
+# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/.idea/.idea.TestAspApi/.idea
+/TestAspApi/bin/Debug/net7.0
+/TestAspApi/obj
+/TestAspApi/TestAspApi.csproj.user
