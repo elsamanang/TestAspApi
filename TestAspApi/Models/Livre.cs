@@ -13,7 +13,10 @@ namespace TestAspApi.Models
         public int Pages { get; set; }
         [Required]
         public int AuteurId { get; set; }
+        [Required]
+        public int GenreId { get; set; }
 
         public virtual Auteur? Auteur { get; set;}
+        public virtual Genre? Genre { get; set; }
     }
 }
