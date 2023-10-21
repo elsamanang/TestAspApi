@@ -25,7 +25,8 @@ namespace TestAspApi.Services
                     Title = createLivre.Title,
                     Description = createLivre.Description,
                     Pages = createLivre.Pages,
-                    AuteurId = createLivre.AuteurId
+                    AuteurId = createLivre.AuteurId,
+                    GenreId = createLivre.GenreId
                 });
 
                 await _context.SaveChangesAsync();
@@ -36,7 +37,8 @@ namespace TestAspApi.Services
                     Title = createLivre.Title,
                     Description = createLivre.Description,
                     Pages = createLivre.Pages,
-                    AuteurID = createLivre.AuteurId
+                    AuteurID = createLivre.AuteurId,
+                    GenreId = createLivre.GenreId
                 };
 
                 return new Reponse<LivreDTO>(true, "Element ajouté", data);
@@ -54,6 +56,7 @@ namespace TestAspApi.Services
                 var list = await _context
                 .Livres
                 .Include(a => a.Auteur)
+                .Include(a=> a.Genre)
                 .ToListAsync();
 
                 var data = new List<LivreDTO>();
@@ -67,8 +70,10 @@ namespace TestAspApi.Services
                             Pages = a.Pages,
                             Description = a.Description,
                             AuteurID = a.AuteurId,
+                            GenreId = a.GenreId,
                             AuteurName = a.Auteur.Name,
-                            AuteurEmail = a.Auteur.Email
+                            AuteurEmail = a.Auteur.Email,
+                            GenreName = a.Genre.Name
                         };
 
                      data.Add(dto);
@@ -127,6 +132,7 @@ namespace TestAspApi.Services
                     findLivre.Description = modifierLivre.Description;
                     findLivre.Pages = modifierLivre.Pages;
                     findLivre.AuteurId = modifierLivre.AuteurId;
+                    findLivre.GenreId = modifierLivre.GenreId;
 
                     var updateLivre = _context.Livres.Update(findLivre);
                     await _context.SaveChangesAsync();
@@ -137,7 +143,8 @@ namespace TestAspApi.Services
                         Title = updateLivre.Entity.Title,
                         Description = updateLivre.Entity.Description,
                         Pages = updateLivre.Entity.Pages,
-                        AuteurID = updateLivre.Entity.AuteurId
+                        AuteurID = updateLivre.Entity.AuteurId,
+                        GenreId = updateLivre.Entity.GenreId
                     };
 
                     return new Reponse<LivreDTO>(true, $"Le livre {data.Title} a ete mise a jour", data);
@@ -168,7 +175,8 @@ namespace TestAspApi.Services
                         Title = deleteLivre.Entity.Title,
                         Description = deleteLivre.Entity.Description,
                         Pages = deleteLivre.Entity.Pages,
-                        AuteurID = deleteLivre.Entity.AuteurId
+                        AuteurID = deleteLivre.Entity.AuteurId,
+                        GenreId = deleteLivre.Entity.GenreId
                     };
 
                     return new Reponse<LivreDTO>(true, $"Le livre {data.Title} a ete supprimé", data);
