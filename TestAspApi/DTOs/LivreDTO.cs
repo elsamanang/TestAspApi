@@ -14,8 +14,11 @@ namespace TestAspApi.DTOs
         public int Pages { get; set; }
         [Required]
         public int AuteurID { get; set; }
+        [Required]
+        public int GenreId { get; set; }
         public string AuteurName { get; set; }
         
         public string AuteurEmail { get; set; }
+        public string GenreName { get; set; }
     }
 }
