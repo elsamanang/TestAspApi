@@ -9,7 +9,7 @@ namespace TestAspApi.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string LivreId { get; set; }
+        public int LivreId { get; set; }
         [Required]
         public int Quantite { get; set; }
 

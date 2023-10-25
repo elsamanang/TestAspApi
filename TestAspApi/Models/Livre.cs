@@ -4,6 +4,10 @@ namespace TestAspApi.Models
 {
     public class Livre
     {
+        public Livre() {
+            Stocks = new HashSet<Stock>();
+        }
+
         [Key]
         public int Id { get; set; }
         [Required]
@@ -18,5 +22,6 @@ namespace TestAspApi.Models
 
         public virtual Auteur? Auteur { get; set;}
         public virtual Genre? Genre { get; set; }
+        public virtual ICollection<Stock> Stocks { get; set; }
     }
 }
