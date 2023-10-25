@@ -22,5 +22,8 @@ namespace TestAspApi.Contexts
         public virtual DbSet<Auteur> Auteurs { get; set; }
         public virtual DbSet<Livre> Livres { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Stock> Stocks { get; set; }
+        public virtual DbSet<TypeOperation> TypeOperations { get; set; }
+        public virtual DbSet<Operation> Operations { get; set; }
     }
 }
