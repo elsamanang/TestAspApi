@@ -6,6 +6,6 @@
         public int Id { get; set; }
         public int Quantite { get; set; }
         public int LivreId { get; set; }
-        public int LivreName { get; set;}
+        public string LivreTitle { get; set;}
     }
 }
