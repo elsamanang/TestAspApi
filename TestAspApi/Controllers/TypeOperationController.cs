@@ -19,7 +19,7 @@ namespace TestAspApi.Controllers
 
         [HttpGet]
         [Route("list")]
-        public async Task<IActionResult> GetAll() {
+        public async Task<IActionResult> GetAllAsync() {
             var reponse = await _typeOperationService.GetAllAsync();
 
             if (reponse.IsSucceed)
@@ -32,7 +32,7 @@ namespace TestAspApi.Controllers
 
         [HttpGet]
         [Route("{id:int}/get-one")]
-        public async Task<IActionResult> GetOne(int id)
+        public async Task<IActionResult> GetOneAsync(int id)
         {
             var reponse = await _typeOperationService.GetOneAsync(id);
 
@@ -46,7 +46,7 @@ namespace TestAspApi.Controllers
 
         [HttpGet]
         [Route("{id:int}/get-with-operation")]
-        public async Task<IActionResult> GetWithOperation(int id)
+        public async Task<IActionResult> GetWithOperationAsync(int id)
         {
             var reponse = await _typeOperationService.GetWithOperationsAsync(id);
 
@@ -60,7 +60,7 @@ namespace TestAspApi.Controllers
 
         [HttpPost]
         [Route("creer")]
-        public async Task<IActionResult> CreateNewTypeOperation([FromBody] CreateTypeOperationDTO newTypeOperation)
+        public async Task<IActionResult> CreateNewTypeOperationAsync([FromBody] CreateTypeOperationDTO newTypeOperation)
         {
             if(ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace TestAspApi.Controllers
 
         [HttpPut]
         [Route("{id:int}/modifier")]
-        public async Task<IActionResult> UpdateTypeOperation(int id, [FromBody] CreateTypeOperationDTO updatetypeOperation)
+        public async Task<IActionResult> UpdateTypeOperationAsync(int id, [FromBody] CreateTypeOperationDTO updatetypeOperation)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +100,7 @@ namespace TestAspApi.Controllers
 
         [HttpDelete]
         [Route("{id:int}/supprimer")]
-        public async Task<IActionResult> DeleteTypeOperation(int id)
+        public async Task<IActionResult> DeleteTypeOperationAsync(int id)
         {
             var reponse = await _typeOperationService.SupprimerTypeOperationAsync(id);
 

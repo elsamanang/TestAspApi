@@ -19,7 +19,7 @@ namespace TestAspApi.Controllers
 
         [HttpGet]
         [Route("list")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllAsync()
         {
             var reponse = await _operationService.GetAllAsync();
 
@@ -32,8 +32,8 @@ namespace TestAspApi.Controllers
         }
 
         [HttpGet]
-        [Route("list--by-date")]
-        public async Task<IActionResult> GetAll(DateTime day)
+        [Route("list-by-date")]
+        public async Task<IActionResult> GetAllAsync(DateTime day)
         {
             var reponse = await _operationService.GetByDateAsync(day);
 
@@ -47,7 +47,7 @@ namespace TestAspApi.Controllers
 
         [HttpGet]
         [Route("{id:int}/get-one")]
-        public async Task<IActionResult> GetOne(int id)
+        public async Task<IActionResult> GetOneAsync(int id)
         {
             var reponse = await _operationService.GetOneAsync(id);
 
@@ -61,7 +61,7 @@ namespace TestAspApi.Controllers
 
         [HttpPost]
         [Route("creer")]
-        public async Task<IActionResult> CreateNewOperation([FromBody] CreateOperationDTO createOperation)
+        public async Task<IActionResult> CreateNewOperationAsync([FromBody] CreateOperationDTO createOperation)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace TestAspApi.Controllers
 
         [HttpPut]
         [Route("{id:int}/modifier")]
-        public async Task<IActionResult> UpdateOperation(int id, [FromBody] CreateOperationDTO updateOperation)
+        public async Task<IActionResult> UpdateOperationAsync(int id, [FromBody] CreateOperationDTO updateOperation)
         {
             if (ModelState.IsValid)
             {
@@ -99,7 +99,7 @@ namespace TestAspApi.Controllers
 
         [HttpDelete]
         [Route("{id:int}/supprimer")]
-        public async Task<IActionResult> DeleteOperation(int id)
+        public async Task<IActionResult> DeleteOperationAsync(int id)
         {
             var reponse = await _operationService.SupprimerOperationAsync(id);
 

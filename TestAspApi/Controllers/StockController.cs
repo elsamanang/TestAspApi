@@ -19,7 +19,7 @@ namespace TestAspApi.Controllers
 
         [HttpGet]
         [Route("liste")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAllAsync()
         {
             var reponse = await _stockService.GetAllAsync();
 
@@ -32,8 +32,8 @@ namespace TestAspApi.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int)/get-one")]
-        public async Task<IActionResult> GetOne(int id)
+        [Route("{id:int})/get-one")]
+        public async Task<IActionResult> GetOneAsync(int id)
         {
             var reponse = await _stockService.GetOneAsync(id);
 
@@ -47,7 +47,7 @@ namespace TestAspApi.Controllers
 
         [HttpPost]
         [Route("creer")]
-        public async Task<IActionResult> CreateNewStock([FromBody] CreateStockDTO newStock)
+        public async Task<IActionResult> CreateNewStockAsync([FromBody] CreateStockDTO newStock)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace TestAspApi.Controllers
 
         [HttpPut]
         [Route("{id:int}/modifier")]
-        public async Task<IActionResult> UpadteStock(int id, [FromBody] CreateStockDTO updateStock)
+        public async Task<IActionResult> UpadteStockAsync(int id, [FromBody] CreateStockDTO updateStock)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace TestAspApi.Controllers
 
         [HttpDelete]
         [Route("{id:int}/supprimer")]
-        public async Task<IActionResult> DeleteStock(int id)
+        public async Task<IActionResult> DeleteStockAsync(int id)
         {
             var reponse = await _stockService.SupprimerStockAsync(id);
 
