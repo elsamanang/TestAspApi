@@ -8,7 +8,7 @@
         public int Quantite { get; set;}
         public DateTime Day { get; set; }
         public int TypeOperationId { get; set; }
-        public string OperationName { get; set; }
+        public string TypeOperationName { get; set; }
 
     }
 }
