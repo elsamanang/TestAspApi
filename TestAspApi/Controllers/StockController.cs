@@ -32,7 +32,7 @@ namespace TestAspApi.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int})/get-one")]
+        [Route("{id:int}/get-one")]
         public async Task<IActionResult> GetOneAsync(int id)
         {
             var reponse = await _stockService.GetOneAsync(id);
