@@ -23,6 +23,7 @@ namespace TestAspApi.Services
                 var operationBrut = await _context.Operations.AddAsync(new Operation
                 {
                     TypeOperationId = createOperationDTO.TypeOperationId,
+                    LivreId = createOperationDTO.LivreId,
                     Prix = createOperationDTO.Prix,
                     Quantite = createOperationDTO.Quantite,
                     Day = createOperationDTO.Day,
@@ -35,6 +36,8 @@ namespace TestAspApi.Services
                     Prix = operationBrut.Entity.Prix,
                     Quantite = operationBrut.Entity.Quantite,
                     Day = operationBrut.Entity.Day,
+                    TypeOperationId = operationBrut.Entity.TypeOperationId,
+                    LivreId = operationBrut.Entity.LivreId,
                 };
 
                 return new Reponse<OperationDTO>(true, "Opération créée", data);
@@ -51,6 +54,7 @@ namespace TestAspApi.Services
             {
                 var operationBrut = await _context.Operations
                     .Include(a => a.TypeOperation)
+                    .Include(a => a.Livre)
                     .ToListAsync();
                 var data = new List<OperationDTO>();
 
@@ -63,7 +67,9 @@ namespace TestAspApi.Services
                         Quantite = a.Quantite,
                         Day = a.Day,
                         TypeOperationId = a.TypeOperationId,
-                        TypeOperationName = a.TypeOperation.Name
+                        TypeOperationName = a.TypeOperation.Name,
+                        LivreId = a.LivreId,
+                        LivreTitle = a.Livre.Title,
                     };
                     data.Add(item);
                 });
@@ -83,6 +89,7 @@ namespace TestAspApi.Services
                 var operationBrut = await _context.Operations
                     .Where(a => a.Day == day)
                     .Include(a => a.TypeOperation)
+                    .Include (a => a.Livre)
                     .ToListAsync();
                 var data = new List<OperationDTO>();
 
@@ -95,7 +102,9 @@ namespace TestAspApi.Services
                         Quantite = a.Quantite,
                         Day = a.Day,
                         TypeOperationId = a.TypeOperationId,
-                        TypeOperationName = a.TypeOperation.Name
+                        TypeOperationName = a.TypeOperation.Name,
+                        LivreId = a.LivreId,
+                        LivreTitle = a.Livre.Title,
                     };
                     data.Add(item);
                 });
@@ -114,6 +123,7 @@ namespace TestAspApi.Services
             {
                 var operationBrut = await _context.Operations
                     .Include(a => a.TypeOperation)
+                    .Include(a => a.Livre)
                     .FirstOrDefaultAsync(a => a.Id == id);
                 if (operationBrut == null)
                     return new Reponse<OperationDTO>(false, "L'opération choisi n'eiste pas !");
@@ -125,7 +135,9 @@ namespace TestAspApi.Services
                     Quantite = operationBrut.Quantite,
                     Day = operationBrut.Day,
                     TypeOperationId = operationBrut.TypeOperationId,
-                    TypeOperationName = operationBrut.TypeOperation.Name
+                    TypeOperationName = operationBrut.TypeOperation.Name,
+                    LivreId = operationBrut.LivreId,
+                    LivreTitle = operationBrut.Livre.Title,
                 };
 
                 return new Reponse<OperationDTO>(true, "Element trouvé", data);
@@ -147,6 +159,7 @@ namespace TestAspApi.Services
                 operationBrut.Prix = updateOperation.Prix;
                 operationBrut.Quantite = updateOperation.Quantite;
                 operationBrut.TypeOperationId = updateOperation.TypeOperationId;
+                operationBrut.LivreId = updateOperation.LivreId;
 
                 var operationUpdate = _context.Operations.Update(operationBrut);
                 await _context.SaveChangesAsync();
@@ -156,7 +169,8 @@ namespace TestAspApi.Services
                     Id = operationUpdate.Entity.Id,
                     Prix = operationUpdate.Entity.Prix,
                     Quantite = operationUpdate.Entity.Quantite,
-                    TypeOperationId = operationUpdate.Entity.TypeOperationId
+                    TypeOperationId = operationUpdate.Entity.TypeOperationId,
+                    LivreId = operationUpdate.Entity.LivreId,
                 };
 
                 return new Reponse<OperationDTO>(true, "Opération à jour", data);
@@ -183,7 +197,8 @@ namespace TestAspApi.Services
                     Id = operationDelete.Entity.Id,
                     Prix = operationDelete.Entity.Prix,
                     Quantite = operationDelete.Entity.Quantite,
-                    TypeOperationId = operationDelete.Entity.TypeOperationId
+                    TypeOperationId = operationDelete.Entity.TypeOperationId,
+                    LivreId = operationDelete.Entity.LivreId,
                 };
 
                 return new Reponse<OperationDTO>(true, $"Opération supprimée", data);

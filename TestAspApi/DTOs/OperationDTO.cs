@@ -9,6 +9,8 @@
         public DateTime Day { get; set; }
         public int TypeOperationId { get; set; }
         public string TypeOperationName { get; set; }
+        public int LivreId { get; set; }
+        public string LivreTitle { get;set; }
 
     }
 }

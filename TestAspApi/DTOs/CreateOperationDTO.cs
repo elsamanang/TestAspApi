@@ -13,5 +13,7 @@ namespace TestAspApi.DTOs
         public DateTime Day { get; set; }
         [Required]
         public int TypeOperationId { get; set; }
+        [Required]
+        public int LivreId { get; set; }
     }
 }

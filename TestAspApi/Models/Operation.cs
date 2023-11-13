@@ -9,6 +9,8 @@ namespace TestAspApi.Models
         public int Id { get; set; }
         [Required]
         public int TypeOperationId { get; set; }
+        [Required] 
+        public int LivreId { get; set; }
         [Required]
         public int Prix { get; set; }
         [Required]
@@ -17,5 +19,6 @@ namespace TestAspApi.Models
         public DateTime Day { get; set; }
 
         public virtual TypeOperation TypeOperation { get; set; }
+        public virtual Livre Livre { get; set; }
     }
 }
